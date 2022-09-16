@@ -32,15 +32,22 @@ h1 {
 
 .gird>div>div{
     opacity: 0;
-    transition: 1s;
 }
 
 .red{
     background-image: url("../images/red.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: opacity 1s;
     opacity: 1;
 }
 
 .yellow{
     background-image: url("../images/yellow.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: opacity 1s;
     opacity: 1;
 }
