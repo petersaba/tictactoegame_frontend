@@ -30,8 +30,9 @@ h1 {
     gap: 3px;
 }
 
-.gird>div>div{
+.square{
     opacity: 0;
+    transition: opacity 1s;
 }
 
 .red{
@@ -39,7 +40,6 @@ h1 {
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    transition: opacity 1s;
     opacity: 1;
 }
 
@@ -48,6 +48,5 @@ h1 {
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    transition: opacity 1s;
     opacity: 1;
 }
