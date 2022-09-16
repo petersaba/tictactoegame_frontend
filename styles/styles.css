@@ -1,16 +1,30 @@
 /* CSS Reset */
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-.grid{
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.grid {
     background-image: url("../images/board.png");
     margin: auto;
-    margin-top: 10vh;
+    margin-top: 5vh;
     width: 350px;
     height: 350px;
     background-size: cover;
     background-position: center;
+    display: grid;
+    gap: 4px;
+    grid-template-rows: 31% 36% 31%;
 }
+
+.grid>div {
+    display: grid;
+    width: 100%;
+}
+
