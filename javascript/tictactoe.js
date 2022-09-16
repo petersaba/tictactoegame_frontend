@@ -1,5 +1,7 @@
 let turn = 1
 let alreadyChosen = resetAlreadyChosen()
+let redScore = 0
+let yellowScore =0
 
 
 // resets already chosen object for the next game
@@ -25,6 +27,7 @@ function choose(event){
             target.classList.add("red")
             alreadyChosen[target.id] = "red"
             if (checkVictory("red")){
+                document.getElementById("red-score").innerText = ++redScore
                 resetGame()
                 console.log(alreadyChosen)
             }
@@ -34,6 +37,7 @@ function choose(event){
             target.classList.add("yellow")
             alreadyChosen[target.id] = "yellow"
             if (checkVictory("yellow")){
+                document.getElementById("yellow-score").innerText = ++yellowScore
                 resetGame()
                 console.log(alreadyChosen)
             }
@@ -56,7 +60,7 @@ function checkVictory(color){
         (alreadyChosen["square1"] == color && alreadyChosen["square5"] == color && alreadyChosen["square9"] == color) ||
         (alreadyChosen["square3"] == color && alreadyChosen["square5"] == color && alreadyChosen["square7"] == color)) {
 
-        console.log(color);
+        displayWinner(color)
         return color
     }
 }
@@ -69,4 +73,8 @@ function resetGame(){
         i.classList.remove("yellow")
     }
     alreadyChosen = resetAlreadyChosen()
+}
+
+function displayWinner(winner){
+    document.getElementById("winner").innerText = "The Winner is: " + winner
 }

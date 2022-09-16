@@ -50,3 +50,26 @@ h1 {
     background-repeat: no-repeat;
     opacity: 1;
 }
+
+.scores{
+    display: flex;
+    gap: 30px;
+    justify-content: space-around;
+    margin: auto;
+    width: 70%;
+    font-size: large;
+    margin-top: 50px;
+}
+
+.scores span{
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.scores > div:first-child > span{
+    color: red;
+}
+
+.scores > div:last-child > span{
+    color: yellow;
+}
