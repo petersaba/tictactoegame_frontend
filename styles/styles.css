@@ -30,3 +30,17 @@ h1 {
     gap: 3px;
 }
 
+.gird>div>div{
+    opacity: 0;
+    transition: 1s;
+}
+
+.red{
+    background-image: url("../images/red.png");
+    opacity: 1;
+}
+
+.yellow{
+    background-image: url("../images/yellow.png");
+    opacity: 1;
+}
