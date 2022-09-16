@@ -29,9 +29,9 @@ function choose(event){
             if (checkVictory("red")){
                 document.getElementById("red-score").innerText = ++redScore
                 resetGame()
-                console.log(alreadyChosen)
             }
             // turn still changes so that the loser can start in the next game
+            // or if there was a draw, the player who started second in the draw starts first after it
             turn = 2
         }else{
             target.classList.add("yellow")
@@ -39,11 +39,12 @@ function choose(event){
             if (checkVictory("yellow")){
                 document.getElementById("yellow-score").innerText = ++yellowScore
                 resetGame()
-                console.log(alreadyChosen)
             }
-            // turn still changes so that the loser can start in the next game
+            // turn still changes so that the loser can start in the next game 
+            // or if there was a draw, the player who started second in the draw starts first after it
             turn = 1
         }
+        checkDraw()
     }
 }
 
@@ -76,5 +77,19 @@ function resetGame(){
 }
 
 function displayWinner(winner){
-    document.getElementById("winner").innerText = "The Winner is: " + winner
+    if (winner != "draw"){
+        document.getElementById("winner").innerText = "The Winner is: " + winner
+    }else{
+        document.getElementById("winner").innerText = "Draw"
+    }
+}
+
+function checkDraw(){
+    for(const i of Object.keys(alreadyChosen)){
+        if (alreadyChosen[i] == false){
+            return
+        }
+    }
+    resetGame()
+    displayWinner("draw")
 }
