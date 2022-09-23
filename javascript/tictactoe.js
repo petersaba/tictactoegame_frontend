@@ -116,3 +116,26 @@ function getResult(color){
             return 0
         }
 }
+
+function minmax(isMaximizing){
+    if(isMaximizing){
+        const result = getResult("red")
+        if(result == "red"){
+            return 1
+        }else if (result == 0){
+            return 0
+        }
+        let bestScore = -Infinity
+        for(const i of Object.keys(alreadyChosen)){
+            if(!alreadyChosen[i]){
+                alreadyChosen[i] = "red"
+                const score = minmax(false)
+                bestScore = Math.max(bestScore, score) 
+                alreadyChosen[i] == false      
+            }
+        }
+        return bestScore
+    }else{
+
+    }
+}
