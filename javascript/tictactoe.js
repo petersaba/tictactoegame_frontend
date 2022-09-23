@@ -136,6 +136,21 @@ function minmax(isMaximizing){
         }
         return bestScore
     }else{
-
+        const result = getResult("yellow")
+        if(result == "yellow"){
+            return -1
+        }else if(result == 0){
+            return 0
+        }
+        let bestScore = +Infinity
+        for(const i of Object.keys(alreadyChosen)){
+            if(!alreadyChosen[i]){
+                alreadyChosen[i] = "red"
+                const score = minmax(true)
+                bestScore = min(bestScore, score)
+                alreadyChosen[i] = false
+            }
+        }
+        return bestScore
     }
 }
