@@ -133,8 +133,8 @@ function minmax(isMaximizing){
             if(!alreadyChosen[i]){
                 alreadyChosen[i] = "yellow"
                 const score = minmax(false)
+                alreadyChosen[i] = false
                 bestScore = Math.max(bestScore, score) 
-                alreadyChosen[i] == false      
             }
         }
         return bestScore
@@ -150,8 +150,8 @@ function minmax(isMaximizing){
             if(!alreadyChosen[i]){
                 alreadyChosen[i] = "red"
                 const score = minmax(true)
-                bestScore = Math.min(bestScore, score)
                 alreadyChosen[i] = false
+                bestScore = Math.min(bestScore, score)
             }
         }
         return bestScore
@@ -163,7 +163,7 @@ function bestPlay(){
     let bestSpot
     for(const i of Object.keys(alreadyChosen)){
         if(!alreadyChosen[i]){
-            alreadyChosen[i] == "red"
+            alreadyChosen[i] = "red"
             const score = minmax(true)
             alreadyChosen[i] = false
             if(score > bestScore){
@@ -172,7 +172,10 @@ function bestPlay(){
             }
         }
     }
-    console.log(alreadyChosen)
+    alreadyChosen[bestSpot] = "red"
     document.getElementById(bestSpot).classList.add("red")
-    checkVictory("red")
+    if(checkVictory("red")){
+        resetGame()
+    }
+    checkDraw()
 }
