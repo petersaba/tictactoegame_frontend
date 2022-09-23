@@ -3,6 +3,8 @@ let alreadyChosen = resetAlreadyChosen()
 let redScore = 0
 let yellowScore =0
 
+bestPlay()
+console.log(alreadyChosen)
 
 // resets already chosen object for the next game
 function resetAlreadyChosen(){
@@ -22,18 +24,18 @@ function resetAlreadyChosen(){
 
 function choose(event){
     const target = event.target
-    if (!alreadyChosen[target.id]){
-        if (turn == 1){
-            target.classList.add("red")
-            alreadyChosen[target.id] = "red"
-            if (checkVictory("red")){
-                document.getElementById("red-score").innerText = ++redScore
-                resetGame()
-            }
-            // turn still changes so that the loser can start in the next game
-            // or if there was a draw, the player who started second in the draw starts first after it
-            turn = 2
-        }else{
+    // if (!alreadyChosen[target.id]){
+    //     if (turn == 1){
+    //         target.classList.add("red")
+    //         alreadyChosen[target.id] = "red"
+    //         if (checkVictory("red")){
+    //             document.getElementById("red-score").innerText = ++redScore
+    //             resetGame()
+    //         }
+    //         // turn still changes so that the loser can start in the next game
+    //         // or if there was a draw, the player who started second in the draw starts first after it
+    //         turn = 2
+    //     }else{
             target.classList.add("yellow")
             alreadyChosen[target.id] = "yellow"
             if (checkVictory("yellow")){
@@ -42,10 +44,11 @@ function choose(event){
             }
             // turn still changes so that the loser can start in the next game 
             // or if there was a draw, the player who started second in the draw starts first after it
-            turn = 1
-        }
+        //     turn = 1
+        // }
         checkDraw()
-    }
+        bestPlay()
+    // }
 }
 
 function checkVictory(color){
@@ -128,7 +131,7 @@ function minmax(isMaximizing){
         let bestScore = -Infinity
         for(const i of Object.keys(alreadyChosen)){
             if(!alreadyChosen[i]){
-                alreadyChosen[i] = "red"
+                alreadyChosen[i] = "yellow"
                 const score = minmax(false)
                 bestScore = Math.max(bestScore, score) 
                 alreadyChosen[i] == false      
@@ -147,10 +150,29 @@ function minmax(isMaximizing){
             if(!alreadyChosen[i]){
                 alreadyChosen[i] = "red"
                 const score = minmax(true)
-                bestScore = min(bestScore, score)
+                bestScore = Math.min(bestScore, score)
                 alreadyChosen[i] = false
             }
         }
         return bestScore
     }
+}
+
+function bestPlay(){
+    let bestScore = -Infinity
+    let bestSpot
+    for(const i of Object.keys(alreadyChosen)){
+        if(!alreadyChosen[i]){
+            alreadyChosen[i] == "red"
+            const score = minmax(true)
+            alreadyChosen[i] = false
+            if(score > bestScore){
+                bestScore = score
+                bestSpot = i
+            }
+        }
+    }
+    console.log(alreadyChosen)
+    document.getElementById(bestSpot).classList.add("red")
+    checkVictory("red")
 }
