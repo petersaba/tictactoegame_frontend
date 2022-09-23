@@ -139,7 +139,7 @@ function minmax(isMaximizing){
         }
         return bestScore
     }else{
-        const result = getResult("yellow")
+        const result = getResult("red")
         if(result == "yellow"){
             return -1
         }else if(result == 0){
@@ -148,7 +148,7 @@ function minmax(isMaximizing){
         let bestScore = +Infinity
         for(const i of Object.keys(alreadyChosen)){
             if(!alreadyChosen[i]){
-                alreadyChosen[i] = "red"
+                alreadyChosen[i] = "yellow"
                 const score = minmax(true)
                 alreadyChosen[i] = false
                 bestScore = Math.min(bestScore, score)
